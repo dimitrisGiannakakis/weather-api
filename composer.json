@@ -10,7 +10,7 @@
             "email": "Dim.Giannakakis@yahoo.com"
         }
     ],
-    "require": {1
+    "require": {
         "guzzlehttp/guzzle": "~4.0"
     },
     "autoload": {

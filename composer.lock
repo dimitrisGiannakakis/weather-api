@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "afd5042442efe82643749515fd5ef03d",
+    "hash": "a752966111e4a16ebbc9c29b1d585fcd",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -123,51 +123,6 @@
                 "stream"
             ],
             "time": "2014-08-17 21:15:53"
-        },
-        {
-            "name": "thapp/xmlbuilder",
-            "version": "v0.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/iwyg/xmlbuilder.git",
-                "reference": "6b69b02d0634ac6182c12f47de18c2703b05c449"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/iwyg/xmlbuilder/zipball/6b69b02d0634ac6182c12f47de18c2703b05c449",
-                "reference": "6b69b02d0634ac6182c12f47de18c2703b05c449",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.7"
-            },
-            "require-dev": {
-                "mockery/mockery": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Thapp": "src/"
-                },
-                "classmap": [
-                    "tests/"
-                ],
-                "files": [
-                    "src/includes/helper.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thomas Appel",
-                    "email": "mail@thomas-appel.com"
-                }
-            ],
-            "description": "Xmlbuilder utilitity",
-            "time": "2013-10-15 17:50:56"
         }
     ],
     "packages-dev": [],

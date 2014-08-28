@@ -1,0 +1,19 @@
+{
+    "name": "tripiko/openweathermap",
+    "description": "Weather Api",
+    "keywords": [],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dimitris Giannakakis",
+            "email": "Dim.Giannakakis@yahoo.com"
+        }
+    ],
+    "require": {1
+        "guzzlehttp/guzzle": "~4.0"
+    },
+    "autoload": {
+        "psr-0": {"Tripiko\\": "src/"}
+    }
+}

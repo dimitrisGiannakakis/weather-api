@@ -14,13 +14,15 @@ class Folder implements StorageInterface
 
     public function saveThe($path, $data)
     {
-        file_put_contents(__DIR__.$path.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
+        $path = rtrim($path, '/') . '/';
+        file_put_contents($path.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
 
     }
 
     public function readThe($path, $file)
     {
-        $jsonurl = __DIR__ .$path.$file.'.json';
+        $path = rtrim($path, '/') . '/';
+        $jsonurl = $path.$file.'.json';
 
         if (file_exists($jsonurl)) {
 

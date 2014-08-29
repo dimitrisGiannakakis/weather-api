@@ -97,8 +97,6 @@ class CurrentWeather extends OpenWeatherMap
 
                 if ($diff <= 140  && $diff >= -30) {
 
-                    print_r($value);
-
                     return $value;
                 }
             }

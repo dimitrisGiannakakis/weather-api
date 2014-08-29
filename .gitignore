@@ -1,2 +1,2 @@
 vendor/*
-src/Tripiko/OpenWeatherMap/cache/*
+test/cache/*

@@ -14,7 +14,8 @@ class Folder implements StorageInterface
 
     public function saveThe($data)
     {
-        file_put_contents(__DIR__ . '/cache/'.$data['sys']['country'].'_'.$data['name'].'_'.date('d_m_y_h').'.json', json_encode($data));
+        file_put_contents(__DIR__ . '/cache/'.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
+
     }
 
     public function readThe($file)
@@ -23,7 +24,7 @@ class Folder implements StorageInterface
 
         if (file_exists($jsonurl)) {
 
-            $json = file_get_contents($jsonurl, 0, null, null);
+            $json = file_get_contents($jsonurl, 10, null, null);
 
             return json_decode($json);
 

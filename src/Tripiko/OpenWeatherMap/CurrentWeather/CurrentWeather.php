@@ -28,7 +28,7 @@ class CurrentWeather extends OpenWeatherMap
 
 	const UNIT = 'metric';
 
-    public function __construct($query, $t2, StorageInterface $storage)
+    public function __construct($query, $t2 = null, StorageInterface $storage)
     {
         $this->city = $query;
 
@@ -67,15 +67,16 @@ class CurrentWeather extends OpenWeatherMap
 
             $response = $this->get($q);
 
-            print_r($response);
-
             $this->storage->saveThe($response);
 
             return $response;
 
         } else {
 
-            $today = strtotime(date('Y-m-d H:i:s'));
+            //$today = strtotime(date('Y-m-d H:i:s'));
+
+            $today =  strtotime(date('2014-08-29 15:01:00'));
+
             foreach($data->list as $key => $value) {
 
                 $cache_day = strtotime($value->dt_txt);
@@ -84,14 +85,11 @@ class CurrentWeather extends OpenWeatherMap
 
                 if ($diff <= 140  && $diff >= -30) {
 
-                    print_r($value);
-
                     return $value;
                 }
             }
 
         }
-
 
     }
 

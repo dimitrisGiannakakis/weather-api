@@ -16,7 +16,9 @@ class CurrentWeatherFolderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->current_weather = new CurrentWeather('/../../../test/cache/','Athens', 'GR', new Folder());
+        $this->current_weather = new CurrentWeather('Athens', 'GR', new Folder());
+
+        $this->current_weather->setPath('/../../../test/cache/');
         //$this->current_weather = new CurrentWeather('Athens', 'Gr', true);
     }
 

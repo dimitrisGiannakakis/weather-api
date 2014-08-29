@@ -20,6 +20,8 @@ class CurrentWeather extends OpenWeatherMap
 
     private $storage;
 
+    private $path;
+
     const MODE = 'json';
 
     const LANG = 'en';
@@ -28,15 +30,23 @@ class CurrentWeather extends OpenWeatherMap
 
 	const UNIT = 'metric';
 
-    public function __construct($path, $city, $country = null, StorageInterface $storage)
+    public function __construct($city, $country = null, StorageInterface $storage)
     {
         $this->city = $city;
-
-        $this->path = $path;
 
         $this->country = $country;
 
         $this->storage = $storage;
+    }
+
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    public function getPath()
+    {
+        return $this->path;
     }
 
     private function setParams()

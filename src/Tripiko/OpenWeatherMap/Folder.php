@@ -12,7 +12,7 @@ use Tripiko\OpenWeatherMap\StorageInterface;
 class Folder implements StorageInterface
 {
 
-    public function saveThe($path, $data)
+    public function saveThe($data, $path)
     {
         file_put_contents(__DIR__ .$path.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
 

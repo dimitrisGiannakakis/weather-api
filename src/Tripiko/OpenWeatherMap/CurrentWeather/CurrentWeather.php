@@ -28,11 +28,13 @@ class CurrentWeather extends OpenWeatherMap
 
 	const UNIT = 'metric';
 
-    public function __construct($query, $t2 = null, StorageInterface $storage)
+    public function __construct($path, $city, $country = null, StorageInterface $storage)
     {
-        $this->city = $query;
+        $this->city = $city;
 
-        $this->country = $t2;
+        $this->path = $path;
+
+        $this->country = $country;
 
         $this->storage = $storage;
     }
@@ -59,7 +61,7 @@ class CurrentWeather extends OpenWeatherMap
 
         $file = $this->country.'_'.$this->city.'_'.date('Y-m-d');
 
-        $data = $this->storage->readThe($file);
+        $data = $this->storage->readThe($this->path, $file);
 
         if (!isset($data)) {
 
@@ -67,15 +69,15 @@ class CurrentWeather extends OpenWeatherMap
 
             $response = $this->get($q);
 
-            $this->storage->saveThe($response);
+            $this->storage->saveThe($this->path, $response);
 
             return $response;
 
         } else {
 
-            //$today = strtotime(date('Y-m-d H:i:s'));
+            $today = strtotime(date('Y-m-d H:i:s'));
 
-            $today =  strtotime(date('2014-08-29 15:01:00'));
+            //$today =  strtotime(date('2014-08-29 15:01:00'));
 
             foreach($data->list as $key => $value) {
 
@@ -84,6 +86,8 @@ class CurrentWeather extends OpenWeatherMap
                 $diff = ($today - $cache_day)/60;
 
                 if ($diff <= 140  && $diff >= -30) {
+
+                    print_r($value);
 
                     return $value;
                 }

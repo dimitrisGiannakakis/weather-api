@@ -12,15 +12,15 @@ use Tripiko\OpenWeatherMap\StorageInterface;
 class Folder implements StorageInterface
 {
 
-    public function saveThe($data)
+    public function saveThe($path, $data)
     {
-        file_put_contents(__DIR__ . '/../../../test/cache/'.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
+        file_put_contents(__DIR__ .$path.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
 
     }
 
-    public function readThe($file)
+    public function readThe($path, $file)
     {
-        $jsonurl = __DIR__ . '/../../../test/cache/'.$file.'.json';
+        $jsonurl = __DIR__ .$path.$file.'.json';
 
         if (file_exists($jsonurl)) {
 

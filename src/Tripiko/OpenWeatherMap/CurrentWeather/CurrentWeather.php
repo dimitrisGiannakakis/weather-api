@@ -114,7 +114,7 @@ class CurrentWeather extends OpenWeatherMap
 
     public function setTemp($response)
     {
-        $this->temp = $response->main->temp_min;
+        $this->temp = round($response->main->temp_min);
     }
 
 }

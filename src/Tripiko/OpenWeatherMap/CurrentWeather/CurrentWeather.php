@@ -91,7 +91,7 @@ class CurrentWeather extends OpenWeatherMap
 
             $today = strtotime(date('Y-m-d H:i:s'));
 
-            //$today =  strtotime(date('2014-08-29 15:01:00'));
+            //$today =  strtotime(date('2014-09-01 20:32:00'));
 
             foreach($data->list as $key => $value) {
 
@@ -99,7 +99,8 @@ class CurrentWeather extends OpenWeatherMap
 
                 $diff = ($today - $cache_day)/60;
 
-                if ($diff <= 140  && $diff >= -30) {
+
+                if ($diff <= 150  && $diff >= -30) {
 
                     $this->setTemp($value);
 

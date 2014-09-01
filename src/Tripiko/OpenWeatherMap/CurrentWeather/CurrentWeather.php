@@ -22,6 +22,10 @@ class CurrentWeather extends OpenWeatherMap
 
     private $path;
 
+    public $temp;
+
+    public $icon;
+
     const MODE = 'json';
 
     const LANG = 'en';
@@ -81,7 +85,7 @@ class CurrentWeather extends OpenWeatherMap
 
             $this->storage->saveThe($this->path, $response);
 
-            return $response;
+            //$this->setIcon();
 
         } else {
 
@@ -97,12 +101,20 @@ class CurrentWeather extends OpenWeatherMap
 
                 if ($diff <= 140  && $diff >= -30) {
 
-                    return $value;
+                    $this->setTemp($value);
+
+                    //$this->setIcon();
+                    return $this;
                 }
             }
 
         }
 
+    }
+
+    public function setTemp($response)
+    {
+        $this->temp = $response->main->temp_min;
     }
 
 }

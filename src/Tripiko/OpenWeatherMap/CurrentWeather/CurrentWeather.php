@@ -104,6 +104,9 @@ class CurrentWeather extends OpenWeatherMap
 
                     $this->setTemp($value);
 
+
+                    $this->setIcon($value);
+
                     //$this->setIcon();
                     return $this;
                 }
@@ -116,6 +119,11 @@ class CurrentWeather extends OpenWeatherMap
     public function setTemp($response)
     {
         $this->temp = round($response->main->temp_min);
+    }
+
+    public function setIcon($response)
+    {
+        $this->icon = $response->weather['0']->icon;
     }
 
 }

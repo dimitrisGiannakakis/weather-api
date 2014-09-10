@@ -24,7 +24,4 @@ class CurrentWeatherMemCacheTest extends \PHPUnit_Framework_TestCase
     {
         $this->current_weather->getCurrentWeather();
     }
-
-
-
 }

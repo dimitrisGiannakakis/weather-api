@@ -11,4 +11,3 @@ interface StorageInterface
 
     public function readThe($path, $storage);
 }
-

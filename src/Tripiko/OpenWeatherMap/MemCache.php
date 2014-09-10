@@ -6,9 +6,7 @@ namespace Tripiko\OpenWeatherMap;
 
 use Tripiko\OpenWeatherMap\StorageInterface;
 use Tripiko\OpenWeatherMap\MemCache\CacheMemCache;
-/**
- *
- **/
+
 class MemCache  extends CacheMemCache implements StorageInterface
 {
 
@@ -29,4 +27,3 @@ class MemCache  extends CacheMemCache implements StorageInterface
     }
 
 }
-

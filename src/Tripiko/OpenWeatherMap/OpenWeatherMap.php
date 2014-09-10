@@ -6,9 +6,7 @@ namespace Tripiko\OpenWeatherMap;
 use GuzzleHttp\Client;
 use Tripiko\OpenWeatherMap\CurrentWeather\CurrentWeather;
 use GuzzleHttp\Stream;
-/**
- *
- **/
+
 class OpenWeatherMap
 {
 
@@ -36,6 +34,5 @@ class OpenWeatherMap
 
         return $result;
     }
-
 
 }

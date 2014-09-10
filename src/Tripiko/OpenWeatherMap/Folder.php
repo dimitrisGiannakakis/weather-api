@@ -6,9 +6,6 @@ namespace Tripiko\OpenWeatherMap;
 
 use Tripiko\OpenWeatherMap\StorageInterface;
 
-/**
- *
- **/
 class Folder implements StorageInterface
 {
 
@@ -24,6 +21,7 @@ class Folder implements StorageInterface
     public function readThe($path, $file)
     {
         $path = rtrim($path, '/') . '/';
+
         $jsonurl = $path.$file.'.json';
 
         if (file_exists($jsonurl)) {
@@ -37,6 +35,4 @@ class Folder implements StorageInterface
             return null;
         }
     }
-
 }
-

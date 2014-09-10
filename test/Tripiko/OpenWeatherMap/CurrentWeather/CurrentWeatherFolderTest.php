@@ -27,10 +27,6 @@ class CurrentWeatherFolderTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this->current_weather->getCurrentWeather();
 
-
         print_r($result);
     }
-
-
-
 }

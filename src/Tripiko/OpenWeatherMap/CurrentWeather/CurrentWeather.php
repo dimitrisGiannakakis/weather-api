@@ -5,9 +5,7 @@ namespace Tripiko\OpenWeatherMap\CurrentWeather;
 
 use Tripiko\OpenWeatherMap\OpenWeatherMap;
 use Tripiko\OpenWeatherMap\StorageInterface;
-/**
- *
- **/
+
 class CurrentWeather extends OpenWeatherMap
 {
     private $city;
@@ -60,15 +58,14 @@ class CurrentWeather extends OpenWeatherMap
         return $params;
     }
 
-
     public function createQuery()
     {
         $params  = $this->setParams();
+
         $url = $this->weatherUrl.$params.'&units='.self::UNIT.'&type='.self::TYPE.'&lang='.self::LANG.'&mode='.self::MODE;
 
         return $url;
     }
-
 
     public function getCurrentWeather()
     {
@@ -129,11 +126,9 @@ class CurrentWeather extends OpenWeatherMap
 
             $diff = ($today - $cache_day)/60;
 
-
             if ($diff <= 150  && $diff >= -30) {
 
                 $this->setTemp($value);
-
 
                 $this->setIcon($value);
 
@@ -142,5 +137,4 @@ class CurrentWeather extends OpenWeatherMap
             }
         }
     }
-
 }

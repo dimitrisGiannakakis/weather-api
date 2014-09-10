@@ -13,7 +13,7 @@ class Folder implements StorageInterface
     {
         $path = rtrim($path, '/') . '/';
 
-        file_put_contents($path.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
+        file_put_contents($path.$data['city']['country'].'_'.$data['city']['name'].'.json', json_encode($data));
 
         return json_encode($data);
     }

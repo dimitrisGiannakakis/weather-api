@@ -70,7 +70,7 @@ class CurrentWeather extends OpenWeatherMap
     public function getCurrentWeather()
     {
 
-        $file = $this->country.'_'.$this->city.'_'.date('Y-m-d');
+        $file = $this->country.'_'.$this->city;
 
         $data = $this->storage->readThe($this->path, $file);
 

@@ -83,34 +83,27 @@ class CurrentWeather extends OpenWeatherMap
 
             $response = $this->get($q);
 
-            $this->storage->saveThe($this->path, $response);
+            $data = $this->storage->saveThe($this->path, $response);
 
-            //$this->setIcon();
-
-        } else {
+            $after_save = json_decode($data);
 
             $today = strtotime(date('Y-m-d H:i:s'));
 
             //$today =  strtotime(date('2014-09-01 20:32:00'));
 
-            foreach($data->list as $key => $value) {
+            $result = $this->find_entry($after_save);
 
-                $cache_day = strtotime($value->dt_txt);
+            return $result;
 
-                $diff = ($today - $cache_day)/60;
+            //$this->setIcon();
 
+        } else {
 
-                if ($diff <= 150  && $diff >= -30) {
+            $result = $this->find_entry($data);
 
-                    $this->setTemp($value);
+            return $result;
 
-
-                    $this->setIcon($value);
-
-                    //$this->setIcon();
-                    return $this;
-                }
-            }
+            //$today =  strtotime(date('2014-09-01 20:32:00'));
 
         }
 
@@ -124,6 +117,30 @@ class CurrentWeather extends OpenWeatherMap
     public function setIcon($response)
     {
         $this->icon = $response->weather['0']->icon;
+    }
+
+    private function find_entry($data)
+    {
+        $today = strtotime(date('Y-m-d H:i:s'));
+
+        foreach($data->list as $key => $value) {
+
+            $cache_day = strtotime($value->dt_txt);
+
+            $diff = ($today - $cache_day)/60;
+
+
+            if ($diff <= 150  && $diff >= -30) {
+
+                $this->setTemp($value);
+
+
+                $this->setIcon($value);
+
+                //$this->setIcon();
+                return $this;
+            }
+        }
     }
 
 }

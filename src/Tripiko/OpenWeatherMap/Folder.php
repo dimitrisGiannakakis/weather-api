@@ -15,8 +15,10 @@ class Folder implements StorageInterface
     public function saveThe($path, $data)
     {
         $path = rtrim($path, '/') . '/';
+
         file_put_contents($path.$data['city']['country'].'_'.$data['city']['name'].'_'.date('Y-m-d').'.json', json_encode($data));
 
+        return json_encode($data);
     }
 
     public function readThe($path, $file)

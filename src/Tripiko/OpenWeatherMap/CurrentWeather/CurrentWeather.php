@@ -5,67 +5,12 @@ namespace Tripiko\OpenWeatherMap\CurrentWeather;
 
 use Tripiko\OpenWeatherMap\OpenWeatherMap;
 use Tripiko\OpenWeatherMap\StorageInterface;
+use Tripiko\OpenWeatherMap\Request;
 
-class CurrentWeather extends OpenWeatherMap
+class CurrentWeather extends Request
 {
-    private $city;
 
-    private $country;
-
-    private $weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?";
-
-    private $cached;
-
-    private $storage;
-
-    private $path;
-
-    public $temp;
-
-    public $icon;
-
-    const MODE = 'json';
-
-    const LANG = 'en';
-
-    const TYPE = 'accurate';
-
-	const UNIT = 'metric';
-
-    public function __construct($city, $country = null, StorageInterface $storage)
-    {
-        $this->city = $city;
-
-        $this->country = $country;
-
-        $this->storage = $storage;
-    }
-
-    public function setPath($path)
-    {
-        $this->path = $path;
-    }
-
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    private function setParams()
-    {
-        $params = 'q='.$this->city.','.$this->country;
-
-        return $params;
-    }
-
-    public function createQuery()
-    {
-        $params  = $this->setParams();
-
-        $url = $this->weatherUrl.$params.'&units='.self::UNIT.'&type='.self::TYPE.'&lang='.self::LANG.'&mode='.self::MODE;
-
-        return $url;
-    }
+   // private $weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?";
 
     public function getCurrentWeather()
     {

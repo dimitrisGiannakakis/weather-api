@@ -3,13 +3,14 @@
 
 namespace Tripiko\OpenWeatherMap;
 
+use Tripiko\OpenWeatherMap\StorageInterface;
 use Tripiko\OpenWeatherMap\OpenWeatherMap;
 
 class Request extends OpenWeatherMap
 {
-    private $city;
+    public $city;
 
-    protected $country;
+    public $country;
 
     protected $weather_url;
 
@@ -34,7 +35,7 @@ class Request extends OpenWeatherMap
     public function __construct (
         $city,
         $country = null,
-        StorageInterface $storage,
+        StorageInterface $storage
     ) {
         $this->city = $city;
 
@@ -42,12 +43,11 @@ class Request extends OpenWeatherMap
 
         $this->storage = $storage;
 
-        $this->weather_url = $weather_url;
     }
 
     public function setUrl($url)
     {
-        $this->weather_url = $url
+        $this->weather_url = $url;
     }
 
     public function setPath($path)

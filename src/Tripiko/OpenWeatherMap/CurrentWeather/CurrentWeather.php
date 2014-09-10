@@ -10,11 +10,8 @@ use Tripiko\OpenWeatherMap\Request;
 class CurrentWeather extends Request
 {
 
-   // private $weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?";
-
     public function getCurrentWeather()
     {
-
         $file = $this->country.'_'.$this->city;
 
         $data = $this->storage->readThe($this->path, $file);
@@ -39,8 +36,6 @@ class CurrentWeather extends Request
 
             return $result;
 
-            //$this->setIcon();
-
         } else {
 
             $result = $this->find_entry($data);
@@ -48,9 +43,7 @@ class CurrentWeather extends Request
             return $result;
 
             //$today =  strtotime(date('2014-09-01 20:32:00'));
-
         }
-
     }
 
     public function setTemp($response)
@@ -79,7 +72,6 @@ class CurrentWeather extends Request
 
                 $this->setIcon($value);
 
-                //$this->setIcon();
                 return $this;
             }
         }

@@ -11,7 +11,7 @@ class Request extends OpenWeatherMap
 
     protected $country;
 
-    protected $weather_url = "http://api.openweathermap.org/data/2.5/forecast?";
+    protected $weather_url;
 
     protected $cached;
 
@@ -35,7 +35,6 @@ class Request extends OpenWeatherMap
         $city,
         $country = null,
         StorageInterface $storage,
-        $weather_url
     ) {
         $this->city = $city;
 
@@ -44,6 +43,11 @@ class Request extends OpenWeatherMap
         $this->storage = $storage;
 
         $this->weather_url = $weather_url;
+    }
+
+    public function setUrl($url)
+    {
+        $this->weather_url = $url
     }
 
     public function setPath($path)

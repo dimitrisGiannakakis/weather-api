@@ -21,6 +21,8 @@ class CurrentWeather extends Request
 
         if (!isset($data)) {
 
+            $this->setUrl('http://api.openweathermap.org/data/2.5/forecast?');
+
             $q = $this->createQuery();
 
             $response = $this->get($q);

@@ -8,21 +8,11 @@ use Tripiko\OpenWeatherMap\OpenWeatherMap;
 
 class Request extends OpenWeatherMap
 {
-    public $city;
-
-    public $country;
-
     protected $weather_url;
-
-    protected $cached;
-
-    protected $storage;
 
     protected $path;
 
-    public $temp;
-
-    public $icon;
+    protected $params;
 
     const MODE = 'json';
 
@@ -32,18 +22,6 @@ class Request extends OpenWeatherMap
 
 	const UNIT = 'metric';
 
-    public function __construct (
-        $city,
-        $country = null,
-        StorageInterface $storage
-    ) {
-        $this->city = $city;
-
-        $this->country = $country;
-
-        $this->storage = $storage;
-
-    }
 
     public function setUrl($url)
     {
@@ -60,16 +38,19 @@ class Request extends OpenWeatherMap
         return $this->path;
     }
 
-    private function setParams()
+    public function setParams($params)
     {
-        $params = 'q='.$this->city.','.$this->country;
+        $this->params = $params;
+    }
 
-        return $params;
+    public function getParams()
+    {
+        return $this->params;
     }
 
     public function createQuery()
     {
-        $params  = $this->setParams();
+        $params  = $this->getParams();
 
         $url = $this->weather_url.$params.'&units='.self::UNIT.'&type='.self::TYPE.'&lang='.self::LANG.'&mode='.self::MODE;
 

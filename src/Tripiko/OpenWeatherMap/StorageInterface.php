@@ -7,7 +7,7 @@ namespace Tripiko\OpenWeatherMap;
 interface StorageInterface
 {
 
-    public function saveThe($path, $storage);
+    public function saveThe($path,$file_name, $storage);
 
     public function readThe($path, $storage);
 }

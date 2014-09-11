@@ -9,11 +9,11 @@ use Tripiko\OpenWeatherMap\StorageInterface;
 class Folder implements StorageInterface
 {
 
-    public function saveThe($path, $data)
+    public function saveThe($path, $file_name,  $data)
     {
         $path = rtrim($path, '/') . '/';
 
-        file_put_contents($path.$data['city']['country'].'_'.$data['city']['name'].'.json', json_encode($data));
+        file_put_contents($path.$file_name.'.json', json_encode($data));
 
         return json_encode($data);
     }

@@ -9,7 +9,30 @@ use Tripiko\OpenWeatherMap\Request;
 
 class CurrentWeather extends Request
 {
+    public $city;
 
+    public $country;
+
+    public $temp;
+
+    public $icon;
+
+    protected $cached;
+
+    protected $storage;
+
+    public function __construct (
+        $city,
+        $country = null,
+        StorageInterface $storage
+    ) {
+    $this->city = $city;
+
+    $this->country = $country;
+
+    $this->storage = $storage;
+
+    }
     public function getCurrentWeather()
     {
         $file = $this->country.'_'.$this->city;
@@ -20,11 +43,17 @@ class CurrentWeather extends Request
 
             $this->setUrl('http://api.openweathermap.org/data/2.5/forecast?');
 
+            $params = $this->createParams();
+
+            $this->setParams($params);
+
             $q = $this->createQuery();
 
             $response = $this->get($q);
 
-            $data = $this->storage->saveThe($this->path, $response);
+            $file_name = $response['city']['country'].'_'.$response['city']['name'];
+
+            $data = $this->storage->saveThe($this->getPath(), $file_name,  $response);
 
             $after_save = json_decode($data);
 
@@ -44,6 +73,13 @@ class CurrentWeather extends Request
 
             //$today =  strtotime(date('2014-09-01 20:32:00'));
         }
+    }
+
+    private function createParams()
+    {
+        $params = 'q='.$this->city.','.$this->country;
+
+        return $params;
     }
 
     public function setTemp($response)

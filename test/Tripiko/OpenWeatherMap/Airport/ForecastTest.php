@@ -5,9 +5,7 @@
 namespace Tripiko\OpenWeatherMap\Airport;
 
 use Tripiko\OpenWeatherMap\Folder;
-/**
- *
- **/
+
 class ForecastTest extends \PHPUnit_Framework_TestCase
 {
     public $forecast;

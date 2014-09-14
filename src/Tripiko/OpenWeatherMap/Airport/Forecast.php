@@ -6,9 +6,7 @@ namespace Tripiko\OpenWeatherMap\Airport;
 use Tripiko\OpenWeatherMap\OpenWeatherMap;
 use Tripiko\OpenWeatherMap\StorageInterface;
 use Tripiko\OpenWeatherMap\Request;
-/**
- *
- **/
+
 class Forecast extends Request
 {
     public $lon;
@@ -144,5 +142,4 @@ class Forecast extends Request
           return $result;
 
     }
-
 }

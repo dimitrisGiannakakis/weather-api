@@ -100,8 +100,7 @@ class Forecast extends Request
             
             $inte = $interval->format('%R%a');
 
-            if( $inte < 0 || $inte > 10 ) {
-
+            if( $inte < 0 || $inte >= 10 ) {
                 return null;
             } 
 

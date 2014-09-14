@@ -16,7 +16,7 @@ class ForecastTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->forecast = new Forecast('37.93635', '23.946486', new Folder());
+        $this->forecast = new Forecast('37.93635', '23.946486','16 Sep 2014', new Folder());
 
         $this->forecast->setPath(__DIR__.'/../../../cache/Airports');
 

@@ -19,6 +19,12 @@ class Forecast extends Request
 
     protected $storage;
 
+    public $temp_min;
+
+    public $temp_max;
+
+    public $icon;
+
     const CNT = 10;
 
     public function __construct (
@@ -55,12 +61,12 @@ class Forecast extends Request
 
             $result = $this->get_data($data);
 
-            if (!isset($result)) { 
-                
+            if (!isset($result)) {
+
                 $re = $this->get_from_server();
-                
-                return $re; 
-           
+
+                return $re;
+
             }
 
             return  $result;
@@ -76,16 +82,6 @@ class Forecast extends Request
         return $params;
     }
 
-    public function setTemp($response)
-    {
-        $this->temp = round($response->main->temp_min);
-    }
-
-    public function setIcon($response)
-    {
-        $this->icon = $response->weather['0']->icon;
-    }
-
     private function get_data($data)
     {
         foreach($data->list as $key => $value) {
@@ -93,25 +89,43 @@ class Forecast extends Request
             $cache_day = date('d M Y',$value->dt);
 
             $datetime1 = new \DateTime($cache_day);
-            
+
             $datetime2 = new \ DateTime($this->flight_date);
-            
+
             $interval = $datetime1->diff($datetime2);
-            
+
             $inte = $interval->format('%R%a');
 
             if( $inte < 0 || $inte >= 10 ) {
+
                 return null;
-            } 
+            }
 
             if ($this->flight_date == $cache_day) {
-             
-                return $value;
+
+                $this->setTemp($value);
+
+                $this->setIcon($value);
+
+                return $this;
             }
 
         }
 
             return null;
+    }
+
+    public function setTemp($response)
+    {
+        $this->temp_min = round($response->temp->min);
+
+        $this->temp_max = round($response->temp->max);
+    }
+
+    public function setIcon($response)
+    {
+        $this->icon = $response->weather['0']->icon;
+
     }
 
     private function get_from_server()
@@ -136,7 +150,7 @@ class Forecast extends Request
 
           //$today =  strtotime(date('2014-09-01 20:32:00'));
 
-          $result = $this->get_data($after_save); 
+          $result = $this->get_data($after_save);
 
           return $result;
 

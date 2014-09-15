@@ -28,8 +28,8 @@ class Forecast extends Request
     const CNT = 10;
 
     public function __construct (
-        $lat,
         $lon,
+        $lat,
         $date,
         StorageInterface $storage
     ) {

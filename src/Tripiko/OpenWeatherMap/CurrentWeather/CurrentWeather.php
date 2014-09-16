@@ -21,6 +21,8 @@ class CurrentWeather extends Request
 
     protected $storage;
 
+    private $count;
+
     public function __construct (
         $city,
         $country = null,
@@ -35,33 +37,15 @@ class CurrentWeather extends Request
     }
     public function getCurrentWeather()
     {
+        $this->count = 0;
+
         $file = $this->country.'_'.$this->city;
 
         $data = $this->storage->readThe($this->path, $file);
 
         if (!isset($data)) {
 
-            $this->setUrl('http://api.openweathermap.org/data/2.5/forecast?');
-
-            $params = $this->createParams();
-
-            $this->setParams($params);
-
-            $q = $this->createQuery();
-
-            $response = $this->get($q);
-
-            $file_name = $response['city']['country'].'_'.$response['city']['name'];
-
-            $data = $this->storage->saveThe($this->getPath(), $file_name,  $response);
-
-            $after_save = json_decode($data);
-
-            $today = strtotime(date('Y-m-d H:i:s'));
-
-            //$today =  strtotime(date('2014-09-01 20:32:00'));
-
-            $result = $this->find_entry($after_save);
+            $result = $this->get_from_server();
 
             return $result;
 
@@ -92,9 +76,35 @@ class CurrentWeather extends Request
         $this->icon = $response->weather['0']->icon;
     }
 
+    public function get_from_server()
+    {
+        $this->setUrl('http://api.openweathermap.org/data/2.5/forecast?');
+
+        $params = $this->createParams();
+
+        $this->setParams($params);
+
+        $q = $this->createQuery();
+
+        $response = $this->get($q);
+
+        $file_name = $response['city']['country'].'_'.$response['city']['name'];
+
+        $data = $this->storage->saveThe($this->getPath(), $file_name,  $response);
+
+        $after_save = json_decode($data);
+
+
+        $result = $this->find_entry($after_save);
+
+        return $result;
+    }
+
     private function find_entry($data)
     {
         $today = strtotime(date('Y-m-d H:i:s'));
+
+        //$today =  strtotime(date('2014-09-20 21:00:00'));
 
         foreach($data->list as $key => $value) {
 
@@ -110,6 +120,15 @@ class CurrentWeather extends Request
 
                 return $this;
             }
+
+        }
+        $this->count++;
+
+        if ($this->count <= 1) {
+
+            $result = $this->get_from_server();
+
+            return is_null($result) ? '-' : $result;
         }
     }
 }
